@@ -1,16 +1,64 @@
-# React + Vite
+## FreeCodeCamp Data Visualization – Bar Chart (React + D3)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a learning exercise for the FreeCodeCamp Data Visualization certification. I chose to build the Bar Chart project with React and D3 to get comfortable integrating D3’s SVG manipulation and scales inside a modern React app.
 
-Currently, two official plugins are available:
+## What I built
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- A responsive SVG bar chart that visualizes the US GDP dataset provided by FreeCodeCamp.
+- Data is fetched from the FCC reference JSON at runtime and bound to SVG `rect` elements.
+- D3 scales and axes are used to map dates (time scale) and GDP values (linear scale) to chart coordinates.
+- An accessible tooltip that shows the date and GDP value on hover, positioned absolutely over the chart.
 
-## React Compiler
+## Key implementation details
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Data source: `https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json`.
+- Dimensions and layout: width `1200`, height `400`, padding `40` for axes and margins.
+- Scales:
+	- `xScale`: `d3.scaleTime()` using the min/max dates.
+	- `yScale`: `d3.scaleLinear()` from `0` to the max GDP value.
+- Bars: created via D3’s data join, one `rect` per data point, with `data-date` and `data-gdp` attributes to meet FCC tests.
+- Axes: `d3.axisBottom` for X and `d3.axisLeft` for Y, appended with IDs `x-axis` and `y-axis`.
+- Tooltip: a simple div with id `tooltip`. Styling is kept minimal, using absolute positioning and opacity transitions. See `src/components/BarChart.css`.
 
-## Expanding the ESLint configuration
+## Files of interest
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/components/BarChart.jsx` – Main chart logic (fetching data, scales, axes, bars, tooltip behavior).
+- `src/components/BarChart.css` – Minimal styles for the tooltip (absolute positioning, basic appearance).
+
+## Tech stack
+
+- React (Vite) for app structure and lifecycle.
+- D3 v7 for scales, axes, and SVG rendering.
+- ESLint for linting.
+
+## Run locally
+
+Prerequisites: Node.js 18+ recommended.
+
+Install dependencies and start the dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+Build and preview production build:
+
+```bash
+npm run build
+npm run preview
+```
+
+## Demo
+
+I’ll add the live demo link here later.
+
+## Notes and next steps
+
+- This implementation focuses on learning D3’s core concepts within React: data joins, scales, axes, and simple interactivity.
+- Future improvements could include:
+	- Responsive sizing (using container width or `viewBox`).
+	- Accessible focus/keyboard interactions for bars and tooltip.
+	- Formatting GDP values and dates for readability.
+	- Transitions for hover and data updates.
+
