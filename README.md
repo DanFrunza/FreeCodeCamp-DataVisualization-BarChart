@@ -51,7 +51,7 @@ npm run preview
 
 ## Demo
 
-I’ll add the live demo link here later.
+[https://danfrunza.me/FreeCodeCamp-DataVisualization-BarChart/](https://danfrunza.me/FreeCodeCamp-DataVisualization-BarChart/)
 
 ## Notes and next steps
 
